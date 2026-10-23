@@ -128,12 +128,7 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-        @keyframes spinReverse {
-            from { transform: rotate(360deg); }
-            to { transform: rotate(0deg); }
-        }
         .orbit-ring-1 { animation: spinSlow 22s linear infinite; }
-        .orbit-ring-2 { animation: spinReverse 16s linear infinite; }
 
         /* Tech-Style Underlined Hover Trigger & Gradient Popup Card */
         .hover-trigger {
@@ -239,7 +234,7 @@
     <!-- Floating Pill Navbar -->
     <div class="sticky top-4 z-50 max-w-6xl mx-auto px-4 mt-4">
         <nav class="glass-pill rounded-2xl px-4 sm:px-6 h-20 flex items-center justify-between transition-all duration-300">
-            <a href="#" class="flex items-center space-x-3.5 group">
+            <a href="#" class="flex items-center space-x-3.5 group sfx-hover sfx-click">
                 <div class="relative w-12 h-12 rounded-full bg-gradient-to-tr from-cyan-500 to-indigo-600 p-0.5 shadow-lg shadow-cyan-500/25 group-hover:scale-105 transition-transform">
                     <img src="sonusir.jpg" alt="Sonu Sir" class="w-full h-full object-cover rounded-full bg-slate-900" onerror="this.onerror=null; this.src='https://api.iconify.design/lucide:graduation-cap.svg?color=white';">
                 </div>
@@ -250,41 +245,50 @@
             </a>
 
             <!-- Navigation Links -->
-            <div class="hidden md:flex items-center space-x-1 lg:space-x-2 font-semibold text-sm text-slate-300">
-                <a href="#about" class="px-3.5 py-2 rounded-xl hover:bg-white/5 hover:text-cyan-400 transition-all">About</a>
-                <a href="#subjects" class="px-3.5 py-2 rounded-xl hover:bg-white/5 hover:text-cyan-400 transition-all">Subjects</a>
-                <a href="#curriculum" class="px-3.5 py-2 rounded-xl hover:bg-white/5 hover:text-cyan-400 transition-all">Classes 5–10</a>
-                <a href="#schedule" class="px-3.5 py-2 rounded-xl hover:bg-white/5 hover:text-cyan-400 transition-all">Schedule</a>
-                <a href="#location" class="px-3.5 py-2 rounded-xl hover:bg-white/5 hover:text-cyan-400 transition-all">Map</a>
+            <div class="hidden lg:flex items-center space-x-1 font-semibold text-sm text-slate-300">
+                <a href="#about" class="px-3 py-2 rounded-xl hover:bg-white/5 hover:text-cyan-400 transition-all sfx-hover sfx-click">About</a>
+                <a href="#subjects" class="px-3 py-2 rounded-xl hover:bg-white/5 hover:text-cyan-400 transition-all sfx-hover sfx-click">Subjects</a>
+                <a href="#curriculum" class="px-3 py-2 rounded-xl hover:bg-white/5 hover:text-cyan-400 transition-all sfx-hover sfx-click">Classes 5–10</a>
+                <a href="#schedule" class="px-3 py-2 rounded-xl hover:bg-white/5 hover:text-cyan-400 transition-all sfx-hover sfx-click">Schedule</a>
+                <a href="#location" class="px-3 py-2 rounded-xl hover:bg-white/5 hover:text-cyan-400 transition-all sfx-hover sfx-click">Map</a>
             </div>
 
-            <!-- Action Buttons -->
-            <div class="hidden sm:flex items-center space-x-3">
-                <a href="tel:+918918929014" class="px-3.5 py-2 rounded-xl border border-cyan-500/40 bg-cyan-950/40 text-cyan-300 hover:bg-cyan-500 hover:text-slate-950 font-bold text-xs transition-all">
-                    <i class="fa-solid fa-phone mr-1"></i> Call Sir
+            <!-- Action Buttons + SFX Toggle (Enabled by default) -->
+            <div class="hidden sm:flex items-center space-x-2.5">
+                <button id="sfx-toggle-desktop" onclick="toggleSFX()" class="px-3.5 py-2 rounded-xl border border-cyan-500/50 bg-cyan-950/50 text-cyan-300 hover:bg-cyan-900/60 font-extrabold text-xs tracking-wider transition-all flex items-center space-x-1.5 shadow-sm shadow-cyan-500/10">
+                    <i id="sfx-icon-desktop" class="fa-solid fa-volume-high text-cyan-400"></i>
+                    <span id="sfx-text-desktop">SFX: ON</span>
+                </button>
+                <a href="tel:+918918929014" class="px-3.5 py-2 rounded-xl border border-slate-700 bg-slate-900/80 text-slate-200 hover:border-cyan-400 hover:text-cyan-300 font-bold text-xs transition-all sfx-hover sfx-click">
+                    <i class="fa-solid fa-phone mr-1"></i> Call
                 </a>
-                <a href="#appointment" class="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-indigo-500/30 transition-all transform hover:-translate-y-0.5">
+                <a href="#appointment" class="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-500 via-indigo-500 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white px-5 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-indigo-500/30 transition-all transform hover:-translate-y-0.5 sfx-hover sfx-click">
                     <span>Appointment</span>
                     <i class="fa-solid fa-arrow-right text-xs"></i>
                 </a>
             </div>
 
-            <!-- Mobile Hamburger -->
-            <button id="menu-btn" class="md:hidden text-slate-300 focus:outline-none p-2.5 rounded-xl hover:bg-slate-800 border border-slate-700">
-                <i class="fa-solid fa-bars text-lg"></i>
-            </button>
+            <!-- Mobile Hamburger + Mobile SFX Button -->
+            <div class="flex sm:hidden items-center space-x-2">
+                <button id="sfx-toggle-mobile" onclick="toggleSFX()" class="px-3 py-2 rounded-xl border border-cyan-500/50 bg-cyan-950/50 text-cyan-300 font-extrabold text-xs">
+                    <span id="sfx-text-mobile">SFX: ON</span>
+                </button>
+                <button id="menu-btn" class="text-slate-300 focus:outline-none p-2.5 rounded-xl hover:bg-slate-800 border border-slate-700 sfx-click">
+                    <i class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
         </nav>
 
         <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden mt-2 glass-pill rounded-2xl px-6 py-5 space-y-3 shadow-2xl">
-            <a href="#about" class="block font-semibold text-slate-200 hover:text-cyan-400 py-1.5">About Sonu Sir</a>
-            <a href="#subjects" class="block font-semibold text-slate-200 hover:text-cyan-400 py-1.5">Subjects (Maths & PCB)</a>
-            <a href="#curriculum" class="block font-semibold text-slate-200 hover:text-cyan-400 py-1.5">Class 5–10 Focus</a>
-            <a href="#schedule" class="block font-semibold text-slate-200 hover:text-cyan-400 py-1.5">Batch Timings</a>
-            <a href="#location" class="block font-semibold text-slate-200 hover:text-cyan-400 py-1.5">Location & Map</a>
-            <a href="#appointment" class="block font-semibold text-cyan-400 py-1.5">Book Parent Appointment →</a>
+        <div id="mobile-menu" class="hidden lg:hidden mt-2 glass-pill rounded-2xl px-6 py-5 space-y-3 shadow-2xl">
+            <a href="#about" class="block font-semibold text-slate-200 hover:text-cyan-400 py-1.5 sfx-click">About Sonu Sir</a>
+            <a href="#subjects" class="block font-semibold text-slate-200 hover:text-cyan-400 py-1.5 sfx-click">Subjects (Maths & PCB)</a>
+            <a href="#curriculum" class="block font-semibold text-slate-200 hover:text-cyan-400 py-1.5 sfx-click">Class 5–10 Focus</a>
+            <a href="#schedule" class="block font-semibold text-slate-200 hover:text-cyan-400 py-1.5 sfx-click">Batch Timings</a>
+            <a href="#location" class="block font-semibold text-slate-200 hover:text-cyan-400 py-1.5 sfx-click">Location & Map</a>
+            <a href="#appointment" class="block font-semibold text-cyan-400 py-1.5 sfx-click">Book Parent Appointment →</a>
             <div class="pt-3 border-t border-slate-800 flex flex-col space-y-2">
-                <a href="tel:+918918929014" class="flex items-center justify-center space-x-2 bg-gradient-to-r from-cyan-500 to-indigo-600 text-white py-3 rounded-xl font-bold shadow-lg">
+                <a href="tel:+918918929014" class="flex items-center justify-center space-x-2 bg-gradient-to-r from-cyan-500 to-indigo-600 text-white py-3 rounded-xl font-bold shadow-lg sfx-click">
                     <i class="fa-solid fa-phone"></i>
                     <span>Call +91 891 892 9014</span>
                 </a>
@@ -299,19 +303,19 @@
         <div class="aurora-blob w-96 h-96 bg-purple-600 rounded-full bottom-10 right-10"></div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <!-- Quick Feature Bar (Like Reference Hub Bar) -->
+            <!-- Quick Feature Bar -->
             <div class="max-w-4xl mx-auto mb-12 glass-pill rounded-2xl p-3 px-6 hidden sm:flex items-center justify-around text-xs md:text-sm font-bold text-slate-200">
-                <a href="#subjects" class="flex items-center space-x-2 hover:text-cyan-400 transition-colors py-1">
+                <a href="#subjects" class="flex items-center space-x-2 hover:text-cyan-400 transition-colors py-1 sfx-hover sfx-click">
                     <i class="fa-solid fa-bolt text-amber-400"></i>
                     <span class="underline decoration-slate-600 underline-offset-4">Maths & Numericals</span>
                 </a>
                 <span class="text-slate-700">|</span>
-                <a href="#subjects" class="flex items-center space-x-2 hover:text-pink-400 transition-colors py-1">
+                <a href="#subjects" class="flex items-center space-x-2 hover:text-pink-400 transition-colors py-1 sfx-hover sfx-click">
                     <i class="fa-solid fa-fire text-rose-500"></i>
                     <span class="underline decoration-slate-600 underline-offset-4">Physics, Chemistry & Biology</span>
                 </a>
                 <span class="text-slate-700">|</span>
-                <a href="#appointment" class="flex items-center space-x-2 hover:text-emerald-400 transition-colors py-1">
+                <a href="#appointment" class="flex items-center space-x-2 hover:text-emerald-400 transition-colors py-1 sfx-hover sfx-click">
                     <i class="fa-solid fa-layer-group text-emerald-400"></i>
                     <span class="underline decoration-slate-600 underline-offset-4">1-on-1 Parent Consultation</span>
                 </a>
@@ -321,20 +325,20 @@
                 <!-- Left Hero Content -->
                 <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
                     <div class="inline-flex items-center space-x-2.5 bg-slate-900/90 border border-cyan-500/30 text-cyan-300 px-4 py-1.5 rounded-full text-xs sm:text-sm font-bold shadow-lg">
-                        <i class="fa-solid fa-sparkles text-amber-400"></i>
+                        <i class="fa-solid fa-wand-magic-sparkles text-amber-400"></i>
                         <span>DEDICATED OFFLINE COACHING • CLASSES 5 TO 10</span>
                     </div>
 
                     <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-[1.15]">
                         Master 
                         <!-- Underlined Hover Trigger 1: Maths & PCB -->
-                        <span class="hover-trigger hover-trigger-cyan">
+                        <span class="hover-trigger hover-trigger-cyan sfx-hover">
                             Maths & PCB
                             <span class="hover-card-popup">
                                 <span class="inline-block bg-slate-950/70 text-cyan-300 text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider mb-2">Core Subjects</span>
                                 <span class="block text-base font-extrabold text-white mb-1">Maths, Physics, Chemistry & Bio</span>
                                 <span class="block text-xs text-indigo-100 mb-3">Step-by-step board syllabus coverage, formula mastery, and regular chapter tests for Classes 5 to 10.</span>
-                                <a href="#subjects" class="inline-flex items-center space-x-1 bg-white text-slate-950 font-extrabold text-xs px-3.5 py-1.5 rounded-full shadow hover:bg-cyan-50 transition-colors">
+                                <a href="#subjects" class="inline-flex items-center space-x-1 bg-white text-slate-950 font-extrabold text-xs px-3.5 py-1.5 rounded-full shadow hover:bg-cyan-50 transition-colors sfx-click">
                                     <span>View Subjects</span>
                                     <i class="fa-solid fa-arrow-right text-[10px]"></i>
                                 </a>
@@ -343,13 +347,13 @@
                         with
                         <br class="hidden sm:inline">
                         <!-- Underlined Hover Trigger 2: Sonu Chhetri -->
-                        <span class="hover-trigger hover-trigger-pink">
+                        <span class="hover-trigger hover-trigger-pink sfx-hover">
                             Sonu Chhetri
                             <span class="hover-card-popup">
                                 <span class="inline-block bg-slate-950/70 text-rose-300 text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider mb-2">Lead Educator</span>
                                 <span class="block text-base font-extrabold text-white mb-1">Personal Offline Mentorship</span>
                                 <span class="block text-xs text-indigo-100 mb-3">Focused classroom teaching with direct doubt-clearing and personal attention for every student.</span>
-                                <a href="#appointment" class="inline-flex items-center space-x-1 bg-white text-slate-950 font-extrabold text-xs px-3.5 py-1.5 rounded-full shadow hover:bg-cyan-50 transition-colors">
+                                <a href="#appointment" class="inline-flex items-center space-x-1 bg-white text-slate-950 font-extrabold text-xs px-3.5 py-1.5 rounded-full shadow hover:bg-cyan-50 transition-colors sfx-click">
                                     <span>Meet Sonu Sir</span>
                                     <i class="fa-solid fa-arrow-right text-[10px]"></i>
                                 </a>
@@ -357,13 +361,13 @@
                         </span>
                         in
                         <!-- Underlined Hover Trigger 3: Ethelbari -->
-                        <span class="hover-trigger hover-trigger-amber">
+                        <span class="hover-trigger hover-trigger-amber sfx-hover">
                             Ethelbari
                             <span class="hover-card-popup">
                                 <span class="inline-block bg-slate-950/70 text-amber-300 text-[10px] font-extrabold px-2.5 py-1 rounded-md uppercase tracking-wider mb-2">Verified Center</span>
                                 <span class="block text-base font-extrabold text-white mb-1">Near Blossom English School</span>
                                 <span class="block text-xs text-indigo-100 mb-3">Ethelbari Checkpost, Alipurduar (735204). Safe, accessible offline learning environment.</span>
-                                <a href="https://share.google/VNcF2TF5WQJQnlJAo" target="_blank" class="inline-flex items-center space-x-1 bg-white text-slate-950 font-extrabold text-xs px-3.5 py-1.5 rounded-full shadow hover:bg-cyan-50 transition-colors">
+                                <a href="https://share.google/VNcF2TF5WQJQnlJAo" target="_blank" class="inline-flex items-center space-x-1 bg-white text-slate-950 font-extrabold text-xs px-3.5 py-1.5 rounded-full shadow hover:bg-cyan-50 transition-colors sfx-click">
                                     <span>Open Map</span>
                                     <i class="fa-solid fa-location-arrow text-[10px]"></i>
                                 </a>
@@ -372,26 +376,26 @@
                     </h1>
 
                     <p class="text-base sm:text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                        Hover over the highlighted terms above for instant details! Build rock-solid school fundamentals, eliminate exam fear, and achieve top grades through disciplined offline classroom coaching.
+                        Hover over the underlined words above for instant cards! Build rock-solid school fundamentals, eliminate exam fear, and achieve top grades through disciplined offline classroom coaching.
                     </p>
 
                     <!-- Interactive Mini Metric Cards -->
                     <div class="grid grid-cols-3 gap-3 sm:gap-4 pt-2">
-                        <div class="spotlight-card p-4 rounded-2xl text-left">
+                        <div class="spotlight-card p-4 rounded-2xl text-left sfx-hover">
                             <div class="w-9 h-9 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center font-bold mb-2">
                                 <i class="fa-solid fa-user-graduate"></i>
                             </div>
                             <p class="text-xs text-slate-400 font-medium">Classes</p>
                             <p class="text-sm sm:text-base font-extrabold text-white">Grade 5 – 10</p>
                         </div>
-                        <div class="spotlight-card p-4 rounded-2xl text-left">
+                        <div class="spotlight-card p-4 rounded-2xl text-left sfx-hover">
                             <div class="w-9 h-9 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-400 flex items-center justify-center font-bold mb-2">
                                 <i class="fa-solid fa-calendar-week"></i>
                             </div>
                             <p class="text-xs text-slate-400 font-medium">Weekly Days</p>
                             <p class="text-sm sm:text-base font-extrabold text-white">Mon, Wed, Sat</p>
                         </div>
-                        <div class="spotlight-card p-4 rounded-2xl text-left">
+                        <div class="spotlight-card p-4 rounded-2xl text-left sfx-hover">
                             <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center font-bold mb-2">
                                 <i class="fa-solid fa-clock"></i>
                             </div>
@@ -402,11 +406,11 @@
 
                     <!-- Hero CTA Buttons -->
                     <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-4 pt-4">
-                        <a href="#appointment" class="w-full sm:w-auto bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-extrabold px-8 py-4 rounded-2xl shadow-xl shadow-indigo-500/25 transition-all text-center flex items-center justify-center space-x-2.5 hover:scale-105">
+                        <a href="#appointment" class="w-full sm:w-auto bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-extrabold px-8 py-4 rounded-2xl shadow-xl shadow-indigo-500/25 transition-all text-center flex items-center justify-center space-x-2.5 hover:scale-105 sfx-hover sfx-click">
                             <i class="fa-solid fa-calendar-check"></i>
                             <span>Book Parent Appointment</span>
                         </a>
-                        <a href="https://wa.me/918918929014" target="_blank" class="w-full sm:w-auto bg-slate-900/90 hover:bg-emerald-600 text-white font-bold px-7 py-4 rounded-2xl border border-emerald-500/40 shadow-lg transition-all text-center flex items-center justify-center space-x-2 hover:scale-105">
+                        <a href="https://wa.me/918918929014" target="_blank" class="w-full sm:w-auto bg-slate-900/90 hover:bg-emerald-600 text-white font-bold px-7 py-4 rounded-2xl border border-emerald-500/40 shadow-lg transition-all text-center flex items-center justify-center space-x-2 hover:scale-105 sfx-hover sfx-click">
                             <i class="fa-brands fa-whatsapp text-emerald-400 text-xl"></i>
                             <span>WhatsApp (+91 891 892 9014)</span>
                         </a>
@@ -430,7 +434,7 @@
                             </defs>
                         </svg>
 
-                        <div class="spotlight-card tilt-card rounded-3xl p-7 shadow-2xl text-center space-y-5 relative z-10 border border-indigo-500/30">
+                        <div class="spotlight-card tilt-card rounded-3xl p-7 shadow-2xl text-center space-y-5 relative z-10 border border-indigo-500/30 sfx-hover">
                             <div class="inline-flex items-center space-x-1.5 bg-gradient-to-r from-cyan-500/20 to-indigo-500/20 border border-cyan-400/30 text-cyan-300 text-xs font-extrabold px-3.5 py-1 rounded-full uppercase tracking-wider">
                                 <i class="fa-solid fa-certificate text-amber-400"></i>
                                 <span>Lead Mentor</span>
@@ -463,7 +467,7 @@
 
                             <div class="pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 font-semibold">
                                 <span class="flex items-center space-x-1.5"><i class="fa-solid fa-location-dot text-rose-400"></i><span>Ethelbari, Alipurduar</span></span>
-                                <a href="#appointment" class="text-cyan-400 hover:underline flex items-center space-x-1"><span>Meet Sir</span><i class="fa-solid fa-arrow-right"></i></a>
+                                <a href="#appointment" class="text-cyan-400 hover:underline flex items-center space-x-1 sfx-click"><span>Meet Sir</span><i class="fa-solid fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -472,7 +476,7 @@
         </div>
     </header>
 
-    <!-- Core Teaching Pillars Section (3D Spotlight Cards) -->
+    <!-- Core Teaching Pillars Section -->
     <section id="about" class="py-20 relative z-10 border-t border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl mx-auto text-center space-y-3 mb-14">
@@ -483,7 +487,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <!-- Card 1 -->
-                <div class="spotlight-card tilt-card rounded-3xl p-8 group">
+                <div class="spotlight-card tilt-card rounded-3xl p-8 group sfx-hover">
                     <div class="w-12 h-12 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-bolt"></i>
                     </div>
@@ -491,14 +495,14 @@
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">
                         Every theorem, numerical problem, and scientific process is explained from the ground up so students understand the "why" instead of rote memorizing.
                     </p>
-                    <a href="#appointment" class="text-xs font-extrabold uppercase tracking-wider text-cyan-400 flex items-center space-x-1.5 group-hover:translate-x-1 transition-transform">
+                    <a href="#appointment" class="text-xs font-extrabold uppercase tracking-wider text-cyan-400 flex items-center space-x-1.5 group-hover:translate-x-1 transition-transform sfx-click">
                         <span>ENQUIRE NOW</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
 
                 <!-- Card 2 -->
-                <div class="spotlight-card tilt-card rounded-3xl p-8 group">
+                <div class="spotlight-card tilt-card rounded-3xl p-8 group sfx-hover">
                     <div class="w-12 h-12 rounded-2xl bg-rose-500/10 border border-rose-500/30 text-rose-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-fire"></i>
                     </div>
@@ -506,14 +510,14 @@
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">
                         Offline face-to-face batches allow Sonu Sir to check every student's notebook personally, spot mistakes early, and clear doubts on the spot.
                     </p>
-                    <a href="#appointment" class="text-xs font-extrabold uppercase tracking-wider text-rose-400 flex items-center space-x-1.5 group-hover:translate-x-1 transition-transform">
+                    <a href="#appointment" class="text-xs font-extrabold uppercase tracking-wider text-rose-400 flex items-center space-x-1.5 group-hover:translate-x-1 transition-transform sfx-click">
                         <span>BOOK MEETING</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
                 </div>
 
                 <!-- Card 3 -->
-                <div class="spotlight-card tilt-card rounded-3xl p-8 group">
+                <div class="spotlight-card tilt-card rounded-3xl p-8 group sfx-hover">
                     <div class="w-12 h-12 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-400 flex items-center justify-center text-2xl mb-6 group-hover:scale-110 transition-transform">
                         <i class="fa-solid fa-clipboard-check"></i>
                     </div>
@@ -521,7 +525,7 @@
                     <p class="text-slate-400 text-sm leading-relaxed mb-6">
                         Frequent written assessments and school-exam pattern question papers build writing speed, accuracy, and complete exam confidence.
                     </p>
-                    <a href="#schedule" class="text-xs font-extrabold uppercase tracking-wider text-amber-400 flex items-center space-x-1.5 group-hover:translate-x-1 transition-transform">
+                    <a href="#schedule" class="text-xs font-extrabold uppercase tracking-wider text-amber-400 flex items-center space-x-1.5 group-hover:translate-x-1 transition-transform sfx-click">
                         <span>VIEW SCHEDULE</span>
                         <i class="fa-solid fa-arrow-right"></i>
                     </a>
@@ -541,7 +545,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Mathematics -->
-                <div class="spotlight-card tilt-card rounded-3xl p-6 group flex flex-col justify-between">
+                <div class="spotlight-card tilt-card rounded-3xl p-6 group flex flex-col justify-between sfx-hover">
                     <div>
                         <div class="flex items-center justify-between mb-5">
                             <div class="w-12 h-12 rounded-2xl bg-cyan-500/15 border border-cyan-500/30 text-cyan-400 flex items-center justify-center text-xl font-bold group-hover:scale-110 transition-transform">
@@ -554,14 +558,14 @@
                             Arithmetic, Algebra, Geometry, Mensuration, Trigonometry & Statistics with intensive problem-solving practice.
                         </p>
                     </div>
-                    <a href="#appointment" class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-extrabold text-cyan-400">
+                    <a href="#appointment" class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-extrabold text-cyan-400 sfx-click">
                         <span>ENQUIRE BATCH</span>
                         <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                     </a>
                 </div>
 
                 <!-- Physics -->
-                <div class="spotlight-card tilt-card rounded-3xl p-6 group flex flex-col justify-between">
+                <div class="spotlight-card tilt-card rounded-3xl p-6 group flex flex-col justify-between sfx-hover">
                     <div>
                         <div class="flex items-center justify-between mb-5">
                             <div class="w-12 h-12 rounded-2xl bg-purple-500/15 border border-purple-500/30 text-purple-400 flex items-center justify-center text-xl font-bold group-hover:scale-110 transition-transform">
@@ -574,14 +578,14 @@
                             Laws of Motion, Force, Work & Energy, Light Ray Diagrams, Current Electricity & Numerical Derivations.
                         </p>
                     </div>
-                    <a href="#appointment" class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-extrabold text-purple-400">
+                    <a href="#appointment" class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-extrabold text-purple-400 sfx-click">
                         <span>ENQUIRE BATCH</span>
                         <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                     </a>
                 </div>
 
                 <!-- Chemistry -->
-                <div class="spotlight-card tilt-card rounded-3xl p-6 group flex flex-col justify-between">
+                <div class="spotlight-card tilt-card rounded-3xl p-6 group flex flex-col justify-between sfx-hover">
                     <div>
                         <div class="flex items-center justify-between mb-5">
                             <div class="w-12 h-12 rounded-2xl bg-emerald-500/15 border border-emerald-500/30 text-emerald-400 flex items-center justify-center text-xl font-bold group-hover:scale-110 transition-transform">
@@ -594,14 +598,14 @@
                             Atomic Structure, Periodic Table, Chemical Bonding, Balancing Equations, Acids, Bases & Organic Basics.
                         </p>
                     </div>
-                    <a href="#appointment" class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-extrabold text-emerald-400">
+                    <a href="#appointment" class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-extrabold text-emerald-400 sfx-click">
                         <span>ENQUIRE BATCH</span>
                         <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                     </a>
                 </div>
 
                 <!-- Biology -->
-                <div class="spotlight-card tilt-card rounded-3xl p-6 group flex flex-col justify-between">
+                <div class="spotlight-card tilt-card rounded-3xl p-6 group flex flex-col justify-between sfx-hover">
                     <div>
                         <div class="flex items-center justify-between mb-5">
                             <div class="w-12 h-12 rounded-2xl bg-amber-500/15 border border-amber-500/30 text-amber-400 flex items-center justify-center text-xl font-bold group-hover:scale-110 transition-transform">
@@ -614,7 +618,7 @@
                             Cell Division, Life Processes, Human Anatomy, Plant Physiology, Genetics & Neat Diagram Practice.
                         </p>
                     </div>
-                    <a href="#appointment" class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-extrabold text-amber-400">
+                    <a href="#appointment" class="pt-4 border-t border-slate-800 flex items-center justify-between text-xs font-extrabold text-amber-400 sfx-click">
                         <span>ENQUIRE BATCH</span>
                         <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
                     </a>
@@ -634,19 +638,19 @@
 
             <!-- Interactive Grade Tabs -->
             <div class="flex justify-center space-x-2 sm:space-x-4 mb-8">
-                <button onclick="switchGrade('junior')" id="tab-junior" class="grade-tab bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-extrabold px-5 py-3 rounded-xl text-xs sm:text-sm shadow-lg transition-all">
+                <button onclick="switchGrade('junior')" id="tab-junior" class="grade-tab bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-extrabold px-5 py-3 rounded-xl text-xs sm:text-sm shadow-lg transition-all sfx-hover">
                     Classes 5 & 6 (Foundation)
                 </button>
-                <button onclick="switchGrade('middle')" id="tab-middle" class="grade-tab bg-slate-900 text-slate-300 border border-slate-700 hover:border-cyan-400 font-bold px-5 py-3 rounded-xl text-xs sm:text-sm transition-all">
+                <button onclick="switchGrade('middle')" id="tab-middle" class="grade-tab bg-slate-900 text-slate-300 border border-slate-700 hover:border-cyan-400 font-bold px-5 py-3 rounded-xl text-xs sm:text-sm transition-all sfx-hover">
                     Classes 7 & 8 (Core Builder)
                 </button>
-                <button onclick="switchGrade('senior')" id="tab-senior" class="grade-tab bg-slate-900 text-slate-300 border border-slate-700 hover:border-cyan-400 font-bold px-5 py-3 rounded-xl text-xs sm:text-sm transition-all">
+                <button onclick="switchGrade('senior')" id="tab-senior" class="grade-tab bg-slate-900 text-slate-300 border border-slate-700 hover:border-cyan-400 font-bold px-5 py-3 rounded-xl text-xs sm:text-sm transition-all sfx-hover">
                     Classes 9 & 10 (Board Prep)
                 </button>
             </div>
 
             <!-- Dynamic Content Display Card -->
-            <div id="grade-content" class="spotlight-card rounded-3xl p-8 border border-indigo-500/30 shadow-2xl">
+            <div id="grade-content" class="spotlight-card rounded-3xl p-8 border border-indigo-500/30 shadow-2xl sfx-hover">
                 <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
                     <div class="md:col-span-8 space-y-3">
                         <span id="grade-badge" class="inline-block bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 text-xs font-extrabold px-3 py-1 rounded-full">CLASSES 5 & 6 • STRONG BASICS</span>
@@ -666,7 +670,7 @@
                             <i class="fa-solid fa-book-open-reader"></i>
                         </div>
                         <p class="text-xs text-slate-400">Want to discuss your child's current marks?</p>
-                        <a href="#appointment" class="inline-block w-full bg-white text-slate-950 hover:bg-cyan-50 font-extrabold py-3 px-4 rounded-xl text-xs shadow transition-all">
+                        <a href="#appointment" class="inline-block w-full bg-white text-slate-950 hover:bg-cyan-50 font-extrabold py-3 px-4 rounded-xl text-xs shadow transition-all sfx-click">
                             Schedule Parent Meeting →
                         </a>
                     </div>
@@ -684,7 +688,7 @@
                 <p class="text-slate-400 text-base sm:text-lg">Consistent offline sessions for disciplined study habits.</p>
             </div>
 
-            <div class="max-w-2xl mx-auto spotlight-card tilt-card rounded-3xl p-8 border border-indigo-500/40 shadow-2xl">
+            <div class="max-w-2xl mx-auto spotlight-card tilt-card rounded-3xl p-8 border border-indigo-500/40 shadow-2xl sfx-hover">
                 <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between border-b border-slate-800 pb-5 mb-6 gap-4">
                     <div>
                         <span class="text-xs uppercase tracking-wider text-cyan-400 font-extrabold block">Classroom Mode</span>
@@ -717,14 +721,14 @@
                     </div>
                 </div>
 
-                <a href="#appointment" class="block w-full text-center bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-extrabold py-4 rounded-xl transition-all shadow-lg shadow-indigo-500/25">
+                <a href="#appointment" class="block w-full text-center bg-gradient-to-r from-cyan-500 to-indigo-600 hover:from-cyan-400 hover:to-indigo-500 text-white font-extrabold py-4 rounded-xl transition-all shadow-lg shadow-indigo-500/25 sfx-hover sfx-click">
                     Book an Appointment with Sonu Sir →
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Location & Map Section (Linked with https://share.google/VNcF2TF5WQJQnlJAo) -->
+    <!-- Location & Map Section -->
     <section id="location" class="py-20 relative z-10 border-t border-slate-800/80">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="max-w-3xl mx-auto text-center space-y-3 mb-14">
@@ -734,7 +738,7 @@
             </div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-                <div class="lg:col-span-5 spotlight-card tilt-card rounded-3xl p-8 space-y-6">
+                <div class="lg:col-span-5 spotlight-card tilt-card rounded-3xl p-8 space-y-6 sfx-hover">
                     <div class="flex items-start space-x-4">
                         <div class="w-12 h-12 bg-rose-500/15 text-rose-400 rounded-2xl flex items-center justify-center text-xl flex-shrink-0 mt-1 border border-rose-500/30">
                             <i class="fa-solid fa-map-location-dot"></i>
@@ -748,11 +752,11 @@
                     </div>
 
                     <div class="border-t border-slate-800 pt-6 space-y-3">
-                        <a href="https://share.google/VNcF2TF5WQJQnlJAo" target="_blank" class="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-rose-500 to-amber-500 hover:from-rose-400 hover:to-amber-400 text-white font-extrabold py-3.5 rounded-xl transition-all shadow-lg shadow-rose-500/20">
+                        <a href="https://share.google/VNcF2TF5WQJQnlJAo" target="_blank" class="w-full flex items-center justify-center space-x-2 bg-gradient-to-r from-rose-500 to-amber-500 hover:from-rose-400 hover:to-amber-400 text-white font-extrabold py-3.5 rounded-xl transition-all shadow-lg shadow-rose-500/20 sfx-hover sfx-click">
                             <i class="fa-solid fa-location-arrow"></i>
                             <span>Open Exact Location in Google Maps</span>
                         </a>
-                        <a href="tel:+918918929014" class="w-full flex items-center justify-center space-x-2 bg-slate-900 hover:bg-slate-800 text-cyan-300 font-bold py-3.5 rounded-xl transition-all border border-slate-700">
+                        <a href="tel:+918918929014" class="w-full flex items-center justify-center space-x-2 bg-slate-900 hover:bg-slate-800 text-cyan-300 font-bold py-3.5 rounded-xl transition-all border border-slate-700 sfx-hover sfx-click">
                             <i class="fa-solid fa-phone"></i>
                             <span>Call +91 891 892 9014</span>
                         </a>
@@ -770,7 +774,7 @@
                         referrerpolicy="no-referrer-when-downgrade"
                         class="w-full h-full filter invert hue-rotate-180 contrast-125">
                     </iframe>
-                    <a href="https://share.google/VNcF2TF5WQJQnlJAo" target="_blank" class="absolute bottom-4 right-4 bg-slate-950/90 hover:bg-cyan-500 hover:text-slate-950 text-white text-xs font-extrabold px-4 py-2.5 rounded-xl border border-white/20 shadow-xl backdrop-blur-md transition-all flex items-center space-x-2">
+                    <a href="https://share.google/VNcF2TF5WQJQnlJAo" target="_blank" class="absolute bottom-4 right-4 bg-slate-950/90 hover:bg-cyan-500 hover:text-slate-950 text-white text-xs font-extrabold px-4 py-2.5 rounded-xl border border-white/20 shadow-xl backdrop-blur-md transition-all flex items-center space-x-2 sfx-hover sfx-click">
                         <i class="fa-solid fa-up-right-from-square"></i>
                         <span>Get Directions</span>
                     </a>
@@ -821,7 +825,7 @@
                         <label class="block text-xs font-bold uppercase tracking-wider text-slate-300 mb-1.5">Preferred Meeting Date</label>
                         <input type="date" id="appointment-date" required class="w-full px-4 py-3 rounded-xl border border-slate-700 bg-slate-900/90 text-white focus:outline-none focus:ring-2 focus:ring-cyan-500">
                     </div>
-                    <button type="submit" class="w-full bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-extrabold py-4 rounded-xl shadow-lg shadow-indigo-500/30 transition-all flex items-center justify-center space-x-2 hover:scale-[1.01]">
+                    <button type="submit" class="w-full bg-gradient-to-r from-cyan-500 via-indigo-600 to-purple-600 hover:from-cyan-400 hover:to-purple-500 text-white font-extrabold py-4 rounded-xl shadow-lg shadow-indigo-500/30 transition-all flex items-center justify-center space-x-2 hover:scale-[1.01] sfx-hover">
                         <i class="fa-solid fa-calendar-check"></i>
                         <span>Confirm Appointment & Send to Sonu Sir</span>
                     </button>
@@ -832,7 +836,7 @@
                     <div class="flex items-center justify-between border-b border-slate-800 pb-3">
                         <div class="flex items-center space-x-2.5">
                             <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-indigo-600 text-white flex items-center justify-center font-extrabold text-xs">SC</div>
-                            <span class="font-extrabold text-white text-sm">Parent AppointmentSlip</span>
+                            <span class="font-extrabold text-white text-sm">Parent Appointment Slip</span>
                         </div>
                         <span class="bg-emerald-950 text-emerald-400 border border-emerald-500/30 text-xs font-extrabold px-2.5 py-1 rounded-full">Ready to Send</span>
                     </div>
@@ -843,7 +847,7 @@
                         <p><strong class="text-slate-500">Phone:</strong> <span id="conf-phone" class="font-bold text-white"></span></p>
                         <p><strong class="text-slate-500">Preferred Date:</strong> <span id="conf-date" class="font-bold text-amber-400"></span></p>
                     </div>
-                    <a id="whatsapp-link" href="#" target="_blank" class="block w-full text-center bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3.5 rounded-xl transition-all shadow-lg shadow-emerald-500/30">
+                    <a id="whatsapp-link" href="#" target="_blank" class="block w-full text-center bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold py-3.5 rounded-xl transition-all shadow-lg shadow-emerald-500/30 sfx-hover sfx-click">
                         <i class="fa-brands fa-whatsapp mr-1"></i> Send Appointment on WhatsApp (+91 891 892 9014)
                     </a>
                 </div>
@@ -863,30 +867,162 @@
                     </div>
                 </div>
                 <div class="flex items-center space-x-6 text-sm text-slate-400 font-medium">
-                    <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
-                    <a href="#subjects" class="hover:text-cyan-400 transition-colors">Subjects</a>
-                    <a href="#schedule" class="hover:text-cyan-400 transition-colors">Schedule</a>
-                    <a href="https://share.google/VNcF2TF5WQJQnlJAo" target="_blank" class="hover:text-cyan-400 transition-colors">Google Map</a>
+                    <a href="#about" class="hover:text-cyan-400 transition-colors sfx-click">About</a>
+                    <a href="#subjects" class="hover:text-cyan-400 transition-colors sfx-click">Subjects</a>
+                    <a href="#schedule" class="hover:text-cyan-400 transition-colors sfx-click">Schedule</a>
+                    <a href="https://share.google/VNcF2TF5WQJQnlJAo" target="_blank" class="hover:text-cyan-400 transition-colors sfx-click">Google Map</a>
                 </div>
             </div>
 
             <div class="border-t border-slate-800/80 pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 space-y-4 sm:space-y-0">
                 <p>&copy; 2026 Sonu Chhetri Tuition. All rights reserved.</p>
                 <div class="bg-slate-900/90 border border-slate-800 px-4 py-2 rounded-full">
-                    Built by <strong class="text-white">Sagnik Dey</strong> (Developer of <a href="https://techiesagnik.me" target="_blank" class="text-cyan-400 font-bold hover:underline">techiesagnik.me</a>) • Assisted by <span class="text-indigo-400 font-semibold">Gemini 4 argon</span>
+                    Built by <strong class="text-white">Sagnik Dey</strong> (Developer of <a href="https://techiesagnik.me" target="_blank" class="text-cyan-400 font-bold hover:underline sfx-click">techiesagnik.me</a>) • Assisted by <span class="text-indigo-400 font-semibold">Gemini 4 argon</span>
                 </div>
             </div>
         </div>
     </footer>
 
     <!-- Floating Quick WhatsApp Button -->
-    <a href="https://wa.me/918918929014" target="_blank" class="fixed bottom-6 right-6 z-50 bg-emerald-600 hover:bg-emerald-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all text-2xl border border-emerald-400/40" aria-label="WhatsApp Contact">
+    <a href="https://wa.me/918918929014" target="_blank" class="fixed bottom-6 right-6 z-50 bg-emerald-600 hover:bg-emerald-500 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 transition-all text-2xl border border-emerald-400/40 sfx-hover sfx-click" aria-label="WhatsApp Contact">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <!-- Interactive Scripts -->
+    <!-- Interactive Scripts + Web Audio SFX Engine -->
     <script>
-        // 1. Mobile Menu Toggle
+        // ==========================================
+        // 1. WEB AUDIO SYNTHESIZER SFX ENGINE (ON BY DEFAULT)
+        // ==========================================
+        let sfxEnabled = true; // Enabled by default!
+        let audioCtx = null;
+        let lastHoverTime = 0;
+
+        function getAudioContext() {
+            if (!audioCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (AudioContextClass) {
+                    audioCtx = new AudioContextClass();
+                }
+            }
+            if (audioCtx && audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+            return audioCtx;
+        }
+
+        // Auto-unlock audio context on first user gesture anywhere on page
+        ['click', 'touchstart', 'keydown', 'pointerdown'].forEach(evt => {
+            window.addEventListener(evt, () => {
+                if (sfxEnabled) getAudioContext();
+            }, { once: true, passive: true });
+        });
+
+        // Subtle futuristic UI hover tick
+        function playHoverSFX() {
+            if (!sfxEnabled) return;
+            const nowMs = performance.now();
+            if (nowMs - lastHoverTime < 55) return; // Prevent rapid overlap
+            lastHoverTime = nowMs;
+
+            const ctx = getAudioContext();
+            if (!ctx) return;
+
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(680, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(980, ctx.currentTime + 0.035);
+
+            gain.gain.setValueAtTime(0.025, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.035);
+
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.04);
+        }
+
+        // Crisp digital click sound
+        function playClickSFX() {
+            if (!sfxEnabled) return;
+            const ctx = getAudioContext();
+            if (!ctx) return;
+
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(520, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(1180, ctx.currentTime + 0.065);
+
+            gain.gain.setValueAtTime(0.06, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.065);
+
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.07);
+        }
+
+        // Celebration chime for booking appointment
+        function playSuccessSFX() {
+            if (!sfxEnabled) return;
+            const ctx = getAudioContext();
+            if (!ctx) return;
+
+            const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+            notes.forEach((freq, idx) => {
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.type = 'triangle';
+                const startTime = ctx.currentTime + idx * 0.075;
+                osc.frequency.setValueAtTime(freq, startTime);
+
+                gain.gain.setValueAtTime(0.08, startTime);
+                gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.28);
+
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start(startTime);
+                osc.stop(startTime + 0.3);
+            });
+        }
+
+        // Toggle SFX ON/OFF Button Handler
+        function toggleSFX() {
+            sfxEnabled = !sfxEnabled;
+            const desktopBtn = document.getElementById('sfx-toggle-desktop');
+            const desktopIcon = document.getElementById('sfx-icon-desktop');
+            const desktopText = document.getElementById('sfx-text-desktop');
+            const mobileBtn = document.getElementById('sfx-toggle-mobile');
+            const mobileText = document.getElementById('sfx-text-mobile');
+
+            if (sfxEnabled) {
+                desktopText.innerText = 'SFX: ON';
+                mobileText.innerText = 'SFX: ON';
+                desktopIcon.className = 'fa-solid fa-volume-high text-cyan-400';
+                desktopBtn.className = 'px-3.5 py-2 rounded-xl border border-cyan-500/50 bg-cyan-950/50 text-cyan-300 hover:bg-cyan-900/60 font-extrabold text-xs tracking-wider transition-all flex items-center space-x-1.5 shadow-sm shadow-cyan-500/10';
+                mobileBtn.className = 'px-3 py-2 rounded-xl border border-cyan-500/50 bg-cyan-950/50 text-cyan-300 font-extrabold text-xs';
+                playClickSFX();
+            } else {
+                desktopText.innerText = 'SFX: OFF';
+                mobileText.innerText = 'SFX: OFF';
+                desktopIcon.className = 'fa-solid fa-volume-xmark text-slate-500';
+                desktopBtn.className = 'px-3.5 py-2 rounded-xl border border-slate-700 bg-slate-900/60 text-slate-400 hover:bg-slate-800 font-extrabold text-xs tracking-wider transition-all flex items-center space-x-1.5';
+                mobileBtn.className = 'px-3 py-2 rounded-xl border border-slate-700 bg-slate-900/60 text-slate-400 font-extrabold text-xs';
+            }
+        }
+
+        // Attach SFX listeners to interactive elements
+        document.querySelectorAll('.sfx-hover').forEach(el => {
+            el.addEventListener('mouseenter', playHoverSFX);
+        });
+        document.querySelectorAll('.sfx-click').forEach(el => {
+            el.addEventListener('click', playClickSFX);
+        });
+
+        // ==========================================
+        // 2. MOBILE MENU & SCROLL PROGRESS BAR
+        // ==========================================
         const menuBtn = document.getElementById('menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
         menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
@@ -894,7 +1030,6 @@
             link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
 
-        // 2. Top Scroll Progress Bar
         window.addEventListener('scroll', () => {
             const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
             const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
@@ -902,7 +1037,9 @@
             document.getElementById('scroll-progress').style.width = scrolled + '%';
         });
 
-        // 3. Interactive Particle Starfield Canvas (Matches Tech Hub Vibe)
+        // ==========================================
+        // 3. INTERACTIVE PARTICLE STARFIELD CANVAS
+        // ==========================================
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -955,7 +1092,6 @@
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
                 particles[i].draw();
-                // Connect particles near mouse
                 if (mouse.x && mouse.y) {
                     const dx = particles[i].x - mouse.x;
                     const dy = particles[i].y - mouse.y;
@@ -974,7 +1110,9 @@
         }
         animateParticles();
 
-        // 4. Mouse Spotlight & Subtle 3D Tilt on Cards
+        // ==========================================
+        // 4. MOUSE SPOTLIGHT & 3D TILT CARDS
+        // ==========================================
         document.querySelectorAll('.spotlight-card').forEach(card => {
             card.addEventListener('mousemove', e => {
                 const rect = card.getBoundingClientRect();
@@ -996,7 +1134,9 @@
             });
         });
 
-        // 5. Interactive Grade Switcher (Classes 5-10)
+        // ==========================================
+        // 5. INTERACTIVE GRADE SWITCHER (CLASSES 5-10)
+        // ==========================================
         const gradeData = {
             junior: {
                 badge: 'CLASSES 5 & 6 • FOUNDATION STAGE',
@@ -1034,6 +1174,7 @@
         };
 
         function switchGrade(level) {
+            playClickSFX();
             const data = gradeData[level];
             document.getElementById('grade-badge').innerText = data.badge;
             document.getElementById('grade-title').innerText = data.title;
@@ -1046,14 +1187,16 @@
             ['junior', 'middle', 'senior'].forEach(tab => {
                 const btn = document.getElementById('tab-' + tab);
                 if (tab === level) {
-                    btn.className = 'grade-tab bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-extrabold px-5 py-3 rounded-xl text-xs sm:text-sm shadow-lg transition-all';
+                    btn.className = 'grade-tab bg-gradient-to-r from-cyan-500 to-indigo-600 text-white font-extrabold px-5 py-3 rounded-xl text-xs sm:text-sm shadow-lg transition-all sfx-hover';
                 } else {
-                    btn.className = 'grade-tab bg-slate-900 text-slate-300 border border-slate-700 hover:border-cyan-400 font-bold px-5 py-3 rounded-xl text-xs sm:text-sm transition-all';
+                    btn.className = 'grade-tab bg-slate-900 text-slate-300 border border-slate-700 hover:border-cyan-400 font-bold px-5 py-3 rounded-xl text-xs sm:text-sm transition-all sfx-hover';
                 }
             });
         }
 
-        // 6. Live Next Class Countdown Timer (Mon, Wed, Sat at 4:00 PM)
+        // ==========================================
+        // 6. LIVE NEXT CLASS COUNTDOWN TIMER
+        // ==========================================
         function updateCountdown() {
             const now = new Date();
             const classDays = [1, 3, 6]; 
@@ -1086,9 +1229,13 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // 7. Parent Appointment Booking with Confetti Celebration
+        // ==========================================
+        // 7. PARENT APPOINTMENT BOOKING + CONFETTI + CHIME
+        // ==========================================
         function bookAppointment(event) {
             event.preventDefault();
+            playSuccessSFX();
+
             const parentName = document.getElementById('parent-name').value;
             const studentName = document.getElementById('student-name').value;
             const grade = document.getElementById('student-class').value;
